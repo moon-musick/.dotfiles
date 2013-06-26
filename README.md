@@ -3,7 +3,7 @@
 
 Personal command line workspace setup.
 
-.bashrc
-.toprc
-.tmux.conf
-.gitconfig
+.bashrc  
+.toprc  
+.tmux.conf  
+.gitconfig  
