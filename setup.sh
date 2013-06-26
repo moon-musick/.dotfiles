@@ -5,6 +5,6 @@
 
 wd="$(dirname "$0")"
 
-ls "$wd" | egrep -v "setup.sh" | while read filename; do
+ls "$wd" | egrep -v "(setup.sh|README.md)" | while read filename; do
     ln -s "$(pwd)"/"$wd"/"$filename" "$HOME"/."$filename"
 done
