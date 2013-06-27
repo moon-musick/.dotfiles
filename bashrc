@@ -37,6 +37,8 @@ alias l='ls -CF'
 # English man pages are more recent and more complete
 alias man="LANG=\"en_US.UTF-8\" man"
 alias aptitude="LANG=\"en_US.UTF-8\" aptitude"
+alias apt-cache="LANG=\"en_US.UTF-8\" apt-cache"
+alias apt-get="LANG=\"en_US.UTF-8\" apt-get"
 alias ..="cd .."
 alias ...="cd ../.."
 alias py='python3.2'
