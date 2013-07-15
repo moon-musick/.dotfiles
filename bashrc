@@ -68,7 +68,7 @@ export EDITOR=vim
 # enable vi mode for command and history edition
 set -o vi
 
-# enable powerline prompt
-if [ -f ~/.local/lib/python3.2/site-packages/powerline/bindings/bash/powerline.sh ]; then
-    source ~/.local/lib/python3.2/site-packages/powerline/bindings/bash/powerline.sh
-fi
+# enable powerline prompt - disabled in lite version
+# if [ -f ~/.local/lib/python3.2/site-packages/powerline/bindings/bash/powerline.sh ]; then
+#     source ~/.local/lib/python3.2/site-packages/powerline/bindings/bash/powerline.sh
+# fi
