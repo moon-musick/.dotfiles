@@ -54,7 +54,7 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 # path settings for python scripts, texlive and ruby RVM
-PATH=$PATH:$HOME/python:/usr/local/texlive/2012/bin/x86_64-linux:$HOME/.rvm/bin
+PATH=$PATH:$HOME/python:/usr/local/texlive/2012/bin/x86_64-linux:$HOME/.rvm/bin:$HOME/.local/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # show git branch if you are in git repo directory
@@ -67,3 +67,8 @@ export EDITOR=vim
 
 # enable vi mode for command and history edition
 set -o vi
+
+# enable powerline prompt
+if [ -f ~/.local/lib/python3.2/site-packages/powerline/bindings/bash/powerline.sh ]; then
+    source ~/.local/lib/python3.2/site-packages/powerline/bindings/bash/powerline.sh
+fi
