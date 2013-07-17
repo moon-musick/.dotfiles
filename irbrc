@@ -1,4 +1,5 @@
 require 'rubygems' unless defined? Gem
+require 'irb/completion'
 require 'wirb'
 Wirb.start
 
