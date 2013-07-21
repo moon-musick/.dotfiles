@@ -21,3 +21,5 @@
     tool        = vimdiff
 [color]
     ui          = true
+[pager]
+    log         = false
