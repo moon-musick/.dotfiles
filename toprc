@@ -5,10 +5,10 @@ Def	fieldscur=AEHIOQTWKNMbcdfgjplrsuvyzX
 	summclr=3, msgsclr=1, headclr=3, taskclr=3
 Job	fieldscur=ABcefgjlrstuvyzMKNHIWOPQDX
 	winflags=64312, sortindx=0, maxtasks=0
-	summclr=7, msgsclr=3, headclr=6, taskclr=7
+	summclr=6, msgsclr=1, headclr=6, taskclr=6
 Mem	fieldscur=ANOPQRSTUVbcdefgjlmyzWHIKX
 	winflags=64312, sortindx=13, maxtasks=0
-	summclr=7, msgsclr=3, headclr=2, taskclr=7
+	summclr=2, msgsclr=1, headclr=2, taskclr=2
 Usr	fieldscur=ABDECGfhijlopqrstuvyzMKNWX
 	winflags=64376, sortindx=10, maxtasks=0
-	summclr=7, msgsclr=3, headclr=5, taskclr=7
+	summclr=5, msgsclr=1, headclr=5, taskclr=5
