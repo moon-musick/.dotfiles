@@ -1,4 +1,3 @@
-# Default configuration #######################################################
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -10,13 +9,15 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+# append every command to history file after it was executed
+# and not on terminal close
+# (default zsh behaviour)
+PROMPT_COMMAND="history -n; history -a"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000000
 HISTFILESIZE=1000000
 HISTTIMEFORMAT=%F" "%T" "
-
-# Custom configuration ########################################################
 
 # command aliases
 if [ -x /usr/bin/dircolors ]; then
