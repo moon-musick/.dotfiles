@@ -18,8 +18,12 @@
     type        = cat-file -t
     dump        = cat-file -p
 [merge]
-    tool        = vimdiff
+    tool        = diffconflicts
 [color]
     ui          = true
 [pager]
     log         = false
+[mergetool "diffconflicts"]
+    cmd         = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+    trustExitCode = true
+    keepBackup  = false
