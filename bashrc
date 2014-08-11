@@ -19,6 +19,9 @@ HISTSIZE=1000000
 HISTFILESIZE=1000000
 HISTTIMEFORMAT=%F" "%T" "
 
+# enable vi mode for command and history edition
+set -o vi
+
 # command aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -42,9 +45,6 @@ alias apt-cache="LANG=\"en_US.UTF-8\" apt-cache"
 alias apt-get="LANG=\"en_US.UTF-8\" apt-get"
 alias ..="cd .."
 alias ...="cd ../.."
-alias py='python3.2'
-alias nonempty='egrep -v "^$|^#"'
-alias c="clear"
 
 # set up acroread as PDF viewer for running files from mc
 export TEXDOC_VIEWER_PDF="(acroread %s) &"
@@ -66,10 +66,9 @@ PS1='\u@\h \w$(__git_ps1 " (%s)")\$ '
 export TERM='screen-256color'
 export EDITOR=vim
 
-# enable vi mode for command and history edition
-set -o vi
-
 # enable powerline prompt
 # if [ -f ~/.local/lib/python3.2/site-packages/powerline/bindings/bash/powerline.sh ]; then
 #     source ~/.local/lib/python3.2/site-packages/powerline/bindings/bash/powerline.sh
 # fi
+# enable gvm
+# [[ -s "/home/lucas/.gvm/scripts/gvm" ]] && source "/home/lucas/.gvm/scripts/gvm"

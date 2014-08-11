@@ -1,4 +1,5 @@
 require 'ori'
+require 'interactive_editor'
 
 class Object
   # Return only the methods not present in basic objects

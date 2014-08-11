@@ -18,7 +18,7 @@
     type        = cat-file -t
     dump        = cat-file -p
 [merge]
-    tool        = diffconflicts
+    tool        = vimdiff
 [color]
     ui          = true
 [pager]
