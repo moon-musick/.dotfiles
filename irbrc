@@ -1,3 +1,4 @@
+# vim: ft=ruby
 require 'rubygems' unless defined? Gem
 require 'irb/completion'
 require 'wirb'
