@@ -88,7 +88,9 @@ alias h='history'
 
 # shell usage without stderr redirection yields much errors
 alias firefox='firefox 2>/dev/null'
+alias eog='eog 2>/dev/null'
 alias evince='evince 2>/dev/null'
+alias libreoffice='libreoffice 2>/dev/null'
 # custom logging function
 alias sc='scratch'
 
@@ -169,24 +171,24 @@ function scratch {
 
 # powerline prompt ############################################################
 
-export POWERLINE="$HOME/.powerline/powerline-shell/powerline-shell.py"
+# export POWERLINE="$HOME/.powerline/powerline-shell/powerline-shell.py"
 
-if [ -e "${POWERLINE}" ]; then
-  function powerline_precmd() {
-    export PS1="$(${POWERLINE} $? --shell zsh)"
-  }
+# if [ -e "${POWERLINE}" ]; then
+#   function powerline_precmd() {
+#     export PS1="$(${POWERLINE} $? --shell zsh)"
+#   }
 
-  function install_powerline_precmd() {
-    for s in "${precmd_functions[@]}"; do
-      if [ "$s" = "powerline_precmd" ]; then
-        return
-      fi
-    done
-    precmd_functions+=(powerline_precmd)
-  }
+#   function install_powerline_precmd() {
+#     for s in "${precmd_functions[@]}"; do
+#       if [ "$s" = "powerline_precmd" ]; then
+#         return
+#       fi
+#     done
+#     precmd_functions+=(powerline_precmd)
+#   }
 
-  install_powerline_precmd
-fi
+#   install_powerline_precmd
+# fi
 
 # path configuration && various additional tools ##############################
 
@@ -219,7 +221,8 @@ fi
 
 # GVM
 # [ -e $HOME/.gvm/scripts/gvm ] && source $HOME/.gvm/scripts/gvm
-# export GOPATH="${HOME}/go"
+export GOPATH="${HOME}/go"
+export PATH="${HOME}/go/bin:${PATH}"
 
 # NVM
 # export NVM_DIR="/home/lucas/.nvm"
@@ -228,8 +231,30 @@ fi
 # notify command
 [ -e "${HOME}/.zsh/notifyosd.zsh" ] && . "${HOME}/.zsh/notifyosd.zsh"
 
+[ -e "${HOME}/.zsh/opp.zsh/" ] && . "${HOME}/.zsh/opp.zsh/opp.zsh"
+[ -e "${HOME}/.zsh/opp.zsh/" ] && . "${HOME}/.zsh/opp.zsh/opp/surround.zsh"
+
 # https://github.com/zsh-users/zsh-syntax-highlighting
 [ -e "${HOME}/.zsh/zsh-syntax-highlighting" ] \
   && source "${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # . /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+
+# custom prompt
+if [ "${UID}" -eq 0 ]; then NCOLOR="red"; else NCOLOR="default"; fi
+if [[ -z "${SSH_CLIENT}" ]]; then
+  prompt_host=""
+else
+  prompt_host="@%{$fg[yellow]%}$(hostname -s) "
+fi
+
+PROMPT='${prompt_host}%{$fg[$NCOLOR]%}%3c %{$reset_color%}'
+RPROMPT='%(?..[%{$fg[red]%}%?%{$reset_color%}])%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%} [%*]'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="git:"
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY="*"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+autoload zmv
+autoload zcalc
