@@ -56,3 +56,8 @@ command -v hh 2>&1 >/dev/null \
 
 #   export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 # fi
+
+# fzf https://github.com/junegunn/fzf
+export FZF_TMUX=0
+export FZF_DEFAULT_OPTS='-x --color=16'
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

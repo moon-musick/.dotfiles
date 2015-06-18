@@ -240,6 +240,11 @@ export PATH="${HOME}/go/bin:${PATH}"
 
 # . /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
 
+# fzf https://github.com/junegunn/fzf
+export FZF_TMUX=0
+export FZF_DEFAULT_OPTS='-x --color=16'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # custom prompt
 if [ "${UID}" -eq 0 ]; then NCOLOR="red"; else NCOLOR="default"; fi
 if [[ -z "${SSH_CLIENT}" ]]; then
