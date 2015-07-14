@@ -43,16 +43,3 @@ export HISTFILE=$HOME/.bash_history
 # enable hh binding if command exists
 command -v hh 2>&1 >/dev/null \
   && { bind '"\C-t": "/usr/bin/hh \C-j"' && export HH_CONFIG=hicolor; }
-
-# powerline shell #############################################################
-
-# enable powerline prompt
-# export POWERLINE="$HOME/.powerline/powerline-shell/powerline-shell.py"
-
-# if [ -e "${POWERLINE}" ]; then
-#   function _update_ps1() {
-#     export PS1="$(${POWERLINE} $? 2> /dev/null)"
-#   }
-
-#   export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-# fi
