@@ -5,7 +5,8 @@ ZSH="${HOME}/.oh-my-zsh"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="pure"
+ZSH_THEME=""
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -41,7 +42,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git history-substring-search vi-mode autojump \
-  cabal command-not-found docker gem git-extras httpie pep8 pip python \
+  cabal command-not-found docker gem git-extras go httpie pass pep8 pip python \
   vagrant web-search taskwarrior \
   )
 
@@ -61,13 +62,14 @@ export SAVEHIST=200000
 
 # HH settings
 export HISTFILE=$HOME/.zsh_history
-if [ $(command -v hh) ]; then
+if [ "$(command -v hh)" ]; then
   bindkey -s "\C-t" "\C-u hh \n"
   export HH_CONFIG=hicolor
 fi
 
 # setup vi mode
 bindkey -v
+
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 bindkey -v "^R" history-incremental-search-backward
@@ -93,6 +95,14 @@ alias evince='evince 2>/dev/null'
 alias libreoffice='libreoffice 2>/dev/null'
 # custom logging function
 alias sc='scratch'
+alias policy='apt-cache policy'
+alias search='apt-cache search'
+alias show='apt-cache show'
+alias aremove='sudo apt-get autoremove && sudo apt-get autoclean'
+alias install='sudo apt-get install'
+alias remove='sudo apt-get remove'
+alias fsearch='apt-file search'
+alias upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 
 # exports ####################################################################
 
@@ -121,7 +131,7 @@ help(){
 }
 
 function trash {
-  rm -rf $HOME/.local/share/Trash/*
+  rm -rf "$HOME/.local/share/Trash/"*
 }
 
 # find out which shell is in use
@@ -141,7 +151,7 @@ webshare () {
   echo -n "Press enter to stop sharing, "
   echo    "http://${SSHHOST}:${WEBPORT} copied to primary selection"
   /usr/bin/ssh -R ${WEBPORT}:127.0.0.1:8000 ${SSHHOST} 'read'
-  kill $PID
+  kill "$PID"
 }
 
 function scratch {
@@ -169,30 +179,51 @@ function scratch {
   esac
 }
 
-# powerline prompt ############################################################
+# select tmux session with fzf
+function fs {
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" | \
+    fzf --query="$1" --select-1 --exit-0) &&
+  tmux switch-client -t "$session"
+}
 
-# export POWERLINE="$HOME/.powerline/powerline-shell/powerline-shell.py"
+# select tmux pane with fzf
+function ftpane {
+  local panes current_window target target_window target_pane
+  panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
+  current_window=$(tmux display-message  -p '#I')
 
-# if [ -e "${POWERLINE}" ]; then
-#   function powerline_precmd() {
-#     export PS1="$(${POWERLINE} $? --shell zsh)"
-#   }
+  target=$(echo "$panes" | fzf) || return
 
-#   function install_powerline_precmd() {
-#     for s in "${precmd_functions[@]}"; do
-#       if [ "$s" = "powerline_precmd" ]; then
-#         return
-#       fi
-#     done
-#     precmd_functions+=(powerline_precmd)
-#   }
+  target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+  target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
 
-#   install_powerline_precmd
-# fi
+  if [[ $current_window -eq $target_window ]]; then
+    tmux select-pane -t ${target_window}.${target_pane}
+  else
+    tmux select-pane -t ${target_window}.${target_pane} &&
+    tmux select-window -t $target_window
+  fi
+}
+
+# fkill - kill process
+function fkill {
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    kill -${1:-9} $pid
+  fi
+}
+
+# interactive command selection
+function run {
+  exec $(ls ${=PATH//:/ } 2>/dev/null | sort -u | fzf)
+}
 
 # path configuration && various additional tools ##############################
 
-export PATH=$PATH:/home/lucas/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/lucas/.local/bin:/usr/local/texlive/2013/bin/x86_64-linux
+export PATH=$PATH:/home/lucas/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/lucas/.local/bin:/usr/local/texlive/2014/bin/x86_64-linux
 
 PERL_MB_OPT="--install_base \"/home/lucas/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/lucas/perl5"; export PERL_MM_OPT;
@@ -222,7 +253,7 @@ fi
 # GVM
 # [ -e $HOME/.gvm/scripts/gvm ] && source $HOME/.gvm/scripts/gvm
 export GOPATH="${HOME}/go"
-export PATH="${HOME}/go/bin:${PATH}"
+export PATH="${HOME}/go/bin:/usr/local/go/bin:${PATH}"
 
 # NVM
 # export NVM_DIR="/home/lucas/.nvm"
@@ -238,8 +269,6 @@ export PATH="${HOME}/go/bin:${PATH}"
 [ -e "${HOME}/.zsh/zsh-syntax-highlighting" ] \
   && source "${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# . /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
-
 # fzf https://github.com/junegunn/fzf
 export FZF_TMUX=0
 export FZF_DEFAULT_OPTS='-x --color=16'
@@ -247,19 +276,21 @@ export FZF_DEFAULT_OPTS='-x --color=16'
 
 # custom prompt
 if [ "${UID}" -eq 0 ]; then NCOLOR="red"; else NCOLOR="default"; fi
+
 if [[ -z "${SSH_CLIENT}" ]]; then
   prompt_host=""
 else
-  prompt_host="@%{$fg[yellow]%}$(hostname -s) "
+  prompt_host="%{$bg[green]$fg[white]%} $(hostname -s) %{$reset_color%} "
 fi
 
-PROMPT='${prompt_host}%{$fg[$NCOLOR]%}%3c %{$reset_color%}'
-RPROMPT='%(?..[%{$fg[red]%}%?%{$reset_color%}])%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%} [%*]'
+PROMPT='${prompt_host}%{$fg[$NCOLOR]%}%3c%{$reset_color%}%{$fg[red]%}%(1j. %j.)%{$reset_color%} '
+RPROMPT='%(?..[%{$fg[red]%}%?%{$reset_color%}])%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY="*"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
+# load tools
 autoload zmv
 autoload zcalc
