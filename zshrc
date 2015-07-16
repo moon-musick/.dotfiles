@@ -98,11 +98,12 @@ alias sc='scratch'
 alias policy='apt-cache policy'
 alias search='apt-cache search'
 alias show='apt-cache show'
-alias aremove='sudo apt-get autoremove && sudo apt-get autoclean'
+alias depends='apt-cache depends'
+alias fsearch='apt-file search'
 alias install='sudo apt-get install'
 alias remove='sudo apt-get remove'
-alias fsearch='apt-file search'
 alias upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
+alias aremove='sudo apt-get autoremove && sudo apt-get autoclean'
 
 # exports ####################################################################
 
