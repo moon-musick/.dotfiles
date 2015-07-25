@@ -1,0 +1,31 @@
+browser         sensible-browser
+max-items       100
+show-read-feeds yes
+urls-source     "local"
+
+auto-reload    yes
+reload-time    10
+reload-threads 4
+
+color listnormal        default default
+color listfocus         default default reverse
+color listnormal_unread green   default
+color listfocus_unread  green   default reverse
+color info              default default reverse
+color background        default default
+color article           default default
+
+unbind-key ^B
+bind-key   ^B pageup
+unbind-key ^F
+bind-key   ^F pagedown
+bind-key   ^N next
+bind-key   ^P prev
+bind-key    J next-feed
+bind-key    K prev-feed
+bind-key    k up
+bind-key    j down
+bind-key    h quit
+unbind-key  l
+bind-key    l open
+bind-key    L toggle-show-read-feeds
