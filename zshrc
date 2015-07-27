@@ -84,6 +84,7 @@ alias aptitude="LANGUAGE=en_US.UTF-8 aptitude"
 alias apt-cache="LANG=en apt-cache"
 alias apt-get="LANG=en apt-get"
 alias man='LC_ALL=C man'
+alias nmcli='LANG=en nmcli'
 alias c='clear'
 alias rb='rbenv'
 alias h='history'
