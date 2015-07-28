@@ -57,8 +57,8 @@ setopt -o sharehistory
 
 # enable timestamps in history
 setopt EXTENDED_HISTORY
-export HISTSIZE=200000
-export SAVEHIST=200000
+export HISTSIZE=2000000
+export SAVEHIST=2000000
 
 # HH settings
 export HISTFILE=$HOME/.zsh_history
