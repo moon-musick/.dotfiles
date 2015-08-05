@@ -107,6 +107,9 @@ alias upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 alias aremove='sudo apt-get autoremove && sudo apt-get autoclean'
 alias dgrep='dpkg -l | grep -i'
 
+# http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+alias sudo='sudo '
+
 # exports ####################################################################
 
 export EDITOR='vim'
