@@ -38,9 +38,6 @@ shopt -s histappend
 shopt -s cmdhist
 PROMPT_COMMAND="$PROMPT_COMMAND; history -a; history -c; history -r"
 
-# hh configuration
-export HISTFILE=$HOME/.bash_history
-# enable hh binding if command exists
-# command -v hh 2>&1 >/dev/null \
-#   && { bind '"\C-t": "/usr/bin/hh \C-j"' && export HH_CONFIG=hicolor; }
+# fzf configuration
+# https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
