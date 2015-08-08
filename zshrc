@@ -175,9 +175,17 @@ function scratch {
     'c'|'cancel' )
       sed -i '$ d' "${LOGFILE}"
       ;;
+    'clearlog' )
+      cat /dev/null > "${LOGFILE}"
+      ;;
     'a'|'add' )
       shift
       echo "$(date '+%T'): ${@}" >> "${LOGFILE}"
+      ;;
+    'h'|'help' )
+      echo "Usage: ${0} init|show|cancel|add TEXT|clearlog"
+      echo "Usage: ${0} i|sh|c|a TEXT"
+      echo "Usage: ${0} TEXT"
       ;;
     * )
       echo "$(date '+%T'): ${@}" >> "${LOGFILE}"
