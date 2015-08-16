@@ -112,6 +112,7 @@ alias sudo='sudo '
 
 alias gh='git hist'
 alias grs='git remote show origin'
+alias ghh='git hist | head'
 
 # exports ####################################################################
 
