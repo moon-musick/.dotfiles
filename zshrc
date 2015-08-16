@@ -110,6 +110,9 @@ alias dgrep='dpkg -l | grep -i'
 # http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
 
+alias gh='git hist'
+alias grs='git remote show origin'
+
 # exports ####################################################################
 
 export EDITOR='vim'
