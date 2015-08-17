@@ -43,7 +43,7 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git history-substring-search vi-mode autojump \
   cabal command-not-found docker gem git-extras go httpie pass pep8 pip python \
-  vagrant web-search taskwarrior \
+  vagrant web-search taskwarrior zsh-completions \
   )
 
 [ -e "${ZSH}" ] && source "${ZSH}/oh-my-zsh.sh"
@@ -312,3 +312,4 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 # load tools
 autoload zmv
 autoload zcalc
+autoload -U compinit && compinit
