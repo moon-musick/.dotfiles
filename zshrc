@@ -106,6 +106,7 @@ alias remove='sudo apt-get remove'
 alias upgrade='sudo apt-get update -qqy && sudo apt-get dist-upgrade'
 alias aremove='sudo apt-get autoremove && sudo apt-get autoclean'
 alias dgrep='dpkg -l | grep -i'
+alias hgrep='history | grep -i'
 
 # http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
