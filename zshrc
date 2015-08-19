@@ -153,6 +153,10 @@ function shell {
   ps -p $$
 }
 
+function mkcd {
+  mkdir -p "$1" && cd "$1"
+}
+
 # http://blog.patshead.com/2012/11/a-couple-of-useful-snippets-from-my-shell-config.html?r=related
 webshare () {
   local SSHHOST=nx.lokis.in
