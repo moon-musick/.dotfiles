@@ -108,6 +108,9 @@ alias aremove='sudo apt-get autoremove && sudo apt-get autoclean'
 alias dgrep='dpkg -l | grep -i'
 alias hgrep='history | grep -i'
 
+# get rid of irrelevant error messages
+alias rs='BROWSER=fx rainbowstream'
+
 # http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
 
