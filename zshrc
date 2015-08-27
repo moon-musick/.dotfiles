@@ -108,6 +108,8 @@ alias aremove='sudo apt-get autoremove && sudo apt-get autoclean'
 alias dgrep='dpkg -l | grep -i'
 alias hgrep='history | grep -i'
 
+alias suspend='sudo pm-suspend'
+
 # get rid of irrelevant error messages
 alias rs='BROWSER=fx rainbowstream'
 
