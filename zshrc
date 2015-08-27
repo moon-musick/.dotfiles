@@ -120,6 +120,11 @@ alias gh='git hist'
 alias grs='git remote show origin'
 alias ghh='git hist | head'
 
+alias svl="svn log | less"
+alias svlast="svn log --limit 1"
+alias svll="svn log --limit 10"
+alias svci="svn commit -m"
+
 # exports ####################################################################
 
 export EDITOR='vim'
