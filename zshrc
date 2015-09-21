@@ -107,6 +107,8 @@ alias upgrade='sudo apt-get update -qqy && sudo apt-get dist-upgrade'
 alias aremove='sudo apt-get autoremove && sudo apt-get autoclean'
 alias dgrep='dpkg -l | grep -i'
 alias hgrep='history | grep -i'
+alias df='df -h'
+alias duh='du -hs'
 
 alias suspend='sudo pm-suspend'
 
