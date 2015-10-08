@@ -1,0 +1,22 @@
+{
+  "Prompt": ">",
+  "Style": {
+    "Basic":          ["default", "on_default"],
+    "Matched":        ["white",   "on_default", "bold"],
+    "Query":          ["default", "bold"],
+    "SavedSelection": ["white",   "on_cyan", "bold"],
+    "Selected":       ["black",   "on_green"]
+  },
+  "Keymap": {
+    "C-k": "peco.SelectUp",
+    "C-j": "peco.SelectDown",
+    "C-b": "peco.ScrollPageUp",
+    "C-f": "peco.ScrollPageDown",
+    "C-h": "peco.DeleteBackwardChar",
+    "C-w": "peco.DeleteBackwardWord",
+    "C-u": "peco.KillBeginningOfLine",
+    "C-n": "peco.ToggleRangeMode",
+    "C-x": "peco.CancelRangeMode"
+  },
+  "StickySelection": true
+}
