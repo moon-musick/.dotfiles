@@ -127,6 +127,12 @@ alias svlast="svn log --limit 1"
 alias svll="svn log --limit 10"
 alias svci="svn commit -m"
 
+alias ap='ansible-playbook'
+alias apk='ansible-playbook --ask-sudo-pass'
+alias apvk='ansible-playbook --ask-vault-pass --ask-sudo-pass'
+alias apl='ansible-playbook --list-tasks'
+alias aplh='ansible-playbook --list-hosts'
+
 # exports ####################################################################
 
 export EDITOR='vim'
@@ -137,6 +143,11 @@ export TERM='screen-256color'
 # export MC_SKIN="$HOME/.mc/lib/mc-solarized/solarized.ini"
 
 # functions ###################################################################
+
+# https://github.com/mptre/yank
+function y {
+  /usr/loca/bin/yank $@ -- xsel -b
+}
 
 # custom help command for zsh builtins
 help(){
