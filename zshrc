@@ -147,7 +147,7 @@ export TERM='screen-256color'
 
 # https://github.com/mptre/yank
 function y {
-  /usr/loca/bin/yank $@ -- xsel -b
+  /usr/local/bin/yank $@ -- xsel -b
 }
 
 # custom help command for zsh builtins
