@@ -85,9 +85,10 @@ alias apt-cache="LANG=en apt-cache"
 alias apt-get="LANG=en apt-get"
 alias man='LC_ALL=C man'
 alias nmcli='LANG=en nmcli'
-alias c='clear'
+alias c=' clear'
+alias ca=' tmux setw synchronize-panes on; tmux send-keys clear enter; tmux setw synchronize-panes off'
 alias rb='rbenv'
-alias h='history'
+alias h=' history'
 
 # shell usage without stderr redirection yields much errors
 alias firefox='firefox 2>/dev/null'
