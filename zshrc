@@ -81,8 +81,8 @@ bindkey -a "^S" history-incremental-search-forward
 
 alias ack='ack-grep'
 alias aptitude="LANGUAGE=en_US.UTF-8 aptitude"
-alias apt-cache="LANG=en apt-cache"
-alias apt-get="LANG=en apt-get"
+alias apt-cache="LC_ALL=C apt-cache"
+alias apt-get="LC_ALL=C apt-get"
 alias man='LC_ALL=C man'
 alias nmcli='LANG=en nmcli'
 alias c=' clear'
