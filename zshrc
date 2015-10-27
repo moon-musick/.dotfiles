@@ -132,8 +132,10 @@ alias svci="svn commit -m"
 alias ap='ansible-playbook'
 alias apk='ansible-playbook --ask-sudo-pass'
 alias apvk='ansible-playbook --ask-vault-pass --ask-sudo-pass'
+alias apv='ansible-playbook --vault-password-file ~/.vault.txt'
 alias apl='ansible-playbook --list-tasks'
 alias aplh='ansible-playbook --list-hosts'
+alias av='ansible-vault'
 
 # exports ####################################################################
 
