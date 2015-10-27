@@ -1,0 +1,17 @@
+# vim: ft=zsh
+
+if [ "${UID}" -eq 0 ]; then NCOLOR="red"; else NCOLOR="default"; fi
+
+if [[ -z "${SSH_CLIENT}" ]]; then
+  prompt_host=""
+else
+  prompt_host="%{$bg[green]$fg[white]%} $(hostname -s) %{$reset_color%} "
+fi
+
+PROMPT='${prompt_host}%{$fg[$NCOLOR]%}%3c%{$reset_color%}%{$fg[red]%}%(1j. %j.)%{$reset_color%} '
+RPROMPT='%(?..[%{$fg[red]%}%?%{$reset_color%}])%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="git:"
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY="*"
+ZSH_THEME_GIT_PROMPT_CLEAN=""

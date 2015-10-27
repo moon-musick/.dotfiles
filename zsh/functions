@@ -1,0 +1,154 @@
+# vim: ft=zsh
+
+# custom help command for zsh builtins
+help(){
+  # Comment by original author:
+  # This function used to call the "bash" builtin.
+  # bash -c "help $@"
+  # Better way: look it up in the man pages.
+  # I often look up "test" which doesn't give a useful result,
+  # so I added that as a special case.
+  if [[ $1 == "test" ]]; then
+    man --pager="less -p'^CONDITIONAL EXPRESSIONS$'" zshall
+  else
+    man --pager="less -p'^ *$@ '" zshall
+  fi
+}
+
+function psgrep {
+  ps aux | grep "$1" | grep -v grep
+}
+
+function trash {
+  rm -rf "$HOME/.local/share/Trash/"*
+}
+
+# find out which shell is in use
+function shell {
+  ps -p $$
+}
+
+function mkcd {
+  mkdir -p "$1" && cd "$1"
+}
+
+# http://blog.patshead.com/2012/11/a-couple-of-useful-snippets-from-my-shell-config.html?r=related
+webshare () {
+  local SSHHOST=nx.lokis.in
+  local WEBPORT=8080
+
+  python -m SimpleHTTPServer &
+  local PID=$!
+
+  echo "http://${SSHHOST}:${WEBPORT}" | xclip
+  echo -n "Press enter to stop sharing, "
+  echo    "http://${SSHHOST}:${WEBPORT} copied to primary selection"
+  /usr/bin/ssh -R ${WEBPORT}:127.0.0.1:8000 ${SSHHOST} 'read'
+  kill "$PID"
+}
+
+function scratch {
+  LOGFILE="$HOME/.scratch.log"
+
+  case "${1}" in
+    'i'|'init' )
+      echo "----------------------------------------------------------------" \
+        >> "${LOGFILE}"
+      echo -e "$(date '+%F %T')\n" >> "${LOGFILE}"
+      ;;
+    'sh'|'show' )
+      cat "${LOGFILE}"
+      ;;
+    'c'|'cancel' )
+      sed -i '$ d' "${LOGFILE}"
+      ;;
+    'clearlog' )
+      cat /dev/null > "${LOGFILE}"
+      ;;
+    'a'|'add' )
+      shift
+      echo "$(date '+%T'): ${@}" >> "${LOGFILE}"
+      ;;
+    'h'|'help' )
+      echo "Usage: ${0} init|show|cancel|add TEXT|clearlog"
+      echo "Usage: ${0} i|sh|c|a TEXT"
+      echo "Usage: ${0} TEXT"
+      ;;
+    * )
+      echo "$(date '+%T'): ${@}" >> "${LOGFILE}"
+      ;;
+  esac
+}
+
+# select tmux session with fzf
+function fs {
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" | \
+    fzf --query="$1" --select-1 --exit-0) &&
+  tmux switch-client -t "$session"
+}
+
+# select tmux pane with fzf
+function ftpane {
+  local panes current_window target target_window target_pane
+  panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
+  current_window=$(tmux display-message  -p '#I')
+
+  target=$(echo "$panes" | fzf) || return
+
+  target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+  target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
+
+  if [[ $current_window -eq $target_window ]]; then
+    tmux select-pane -t ${target_window}.${target_pane}
+  else
+    tmux select-pane -t ${target_window}.${target_pane} &&
+    tmux select-window -t $target_window
+  fi
+}
+
+# fkill - kill process
+function fkill {
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    kill -${1:-9} $pid
+  fi
+}
+
+# https://github.com/lazywei/fzf-contrib/blob/master/shell/zsh/filesystem.zsh
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local file
+  file=$(fzf --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && ${EDITOR:-vim} "$file"
+}
+
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-*} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# fda - including hidden directories
+fda() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# cdf - cd into the directory of the selected file
+cdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+# interactive command selection
+function run {
+  exec $(ls ${=PATH//:/ } 2>/dev/null | sort -u | fzf)
+}
+

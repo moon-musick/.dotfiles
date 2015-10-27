@@ -1,0 +1,26 @@
+# vim: ft=zsh
+
+[ -e "${HOME}/.colors" ] && source "${HOME}/.colors"
+
+# rbenv
+if [ -d "$HOME/.rbenv" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
+# enable tmuxinator
+[ -e "${HOME}/bin/tmuxinator.zsh" ] && source "${HOME}/bin/tmuxinator.zsh"
+
+# virtualenv via pip
+[ -f /usr/local/bin/virtualenvwrapper.sh ] \
+  && (export WORKON_HOME && source /usr/local/bin/virtualenvwrapper.sh)
+
+# notify command
+[ -e "${HOME}/.zsh/notifyosd.zsh" ] && . "${HOME}/.zsh/notifyosd.zsh"
+
+[ -e "${HOME}/.zsh/opp.zsh/" ] && . "${HOME}/.zsh/opp.zsh/opp.zsh"
+[ -e "${HOME}/.zsh/opp.zsh/" ] && . "${HOME}/.zsh/opp.zsh/opp/surround.zsh"
+
+# https://github.com/zsh-users/zsh-syntax-highlighting
+[ -e "${HOME}/.zsh/zsh-syntax-highlighting" ] \
+  && source "${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
