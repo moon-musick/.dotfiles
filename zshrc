@@ -379,3 +379,6 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 autoload zmv
 autoload zcalc
 autoload -U compinit && compinit
+
+# source host-specific config if present
+[ -f "${HOME}/.zsh-hostconfig" ] && . "${HOME}/.zsh-hostconfig"
