@@ -41,9 +41,26 @@ alias rs='BROWSER=fx rainbowstream'
 # http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
 
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+alias gdca='git diff --cached'
+alias gdt='git difftool'
+alias gdtca='git difftool --cached'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gu='git unstage'
+alias gup='git pull --rebase'
+alias gw='git whatchanged -p --abbrev-commit --pretty=medium'
+alias gb='git blame -b -w -M -C'
+
 alias gh='git hist'
 alias grs='git remote show origin'
 alias ghh='git hist | head'
+
+alias v='vim'
 
 alias svl="svn log | less"
 alias svlast="svn log --limit 1"

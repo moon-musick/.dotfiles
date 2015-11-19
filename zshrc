@@ -5,7 +5,7 @@ ZSH_THEME=""
 DISABLE_AUTO_TITLE="true"
 export UPDATE_ZSH_DAYS=7
 
-plugins=(git history-substring-search vi-mode autojump \
+plugins=(history-substring-search vi-mode autojump \
   cabal command-not-found docker gem git-extras go httpie pass pep8 pip python \
   vagrant web-search taskwarrior zsh-completions \
   )
