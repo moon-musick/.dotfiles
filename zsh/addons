@@ -8,6 +8,9 @@ if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
+# go tools
+[ -d "${HOME}/go/bin" ] && export PATH="${HOME}/go/bin:$PATH"
+
 # enable tmuxinator
 [ -e "${HOME}/bin/tmuxinator.zsh" ] && source "${HOME}/bin/tmuxinator.zsh"
 
