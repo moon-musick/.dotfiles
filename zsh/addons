@@ -9,7 +9,11 @@ if [ -d "$HOME/.rbenv" ]; then
 fi
 
 # go tools
-[ -d "${HOME}/go/bin" ] && export PATH="${HOME}/go/bin:$PATH"
+[ -d /usr/local/go/bin ] && export PATH="${PATH}:/usr/local/go/bin"
+if [ -d "${HOME}/go/bin" ]; then
+  export PATH="${HOME}/go/bin:$PATH"
+  export GOPATH="${HOME}/go"
+fi
 
 # enable tmuxinator
 [ -e "${HOME}/bin/tmuxinator.zsh" ] && source "${HOME}/bin/tmuxinator.zsh"
