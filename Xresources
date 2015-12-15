@@ -48,6 +48,7 @@ UXTerm*fadeColor:             S_base03
 UXTerm*cursorColor:           S_base1
 UXTerm*pointerColorBackground:S_base01
 UXTerm*pointerColorForeground:S_base1
+UXTerm*borderWidth:           0
 
 !! black dark/light
 UXTerm*color0:                S_base02
