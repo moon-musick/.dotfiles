@@ -84,7 +84,7 @@ UXTerm*color15:               S_base3
 
 !! UXTerm*colorBDMode: true
 !!UXTerm*faceName: Liberation Mono for Powerline:size=9:antialias=false
-UXTerm*faceName: Inconsolata for Powerline:size=11:antialias=false
+UXTerm*faceName: Fantasque Sans Mono:size=10:antialias=false
 !! UXTerm*faceName: Deja Vu Sans Mono for Powerline:size=9:antialias=false
 UXTerm*font: 7x13
 
