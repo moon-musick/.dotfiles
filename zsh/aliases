@@ -77,3 +77,9 @@ alias apl='ansible-playbook --list-tasks'
 alias aplh='ansible-playbook --list-hosts'
 alias av='ansible-vault'
 alias avf='ansible-vault --vault-password-file ~/.vault.txt'
+
+alias cal="gcalcli"
+alias cala="gcalcli agenda"
+alias calw="gcalcli calw"
+alias calm="gcalcli calm"
+alias cald="gcalcli add"
