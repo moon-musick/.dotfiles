@@ -267,7 +267,7 @@ rofi.dpi:                            -1
 ! Threads to use for string matching
 rofi.threads:                        1
 ! Pidfile location
-rofi.pid:                            /run/user/1000/rofi.pid
+! rofi.pid:                            /run/user/1001/rofi.pid
 ! Keybinding
 rofi.kb-primary-paste:               Control+Shift+v,Shift+Insert
 ! Keybinding
