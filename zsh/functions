@@ -152,3 +152,7 @@ function run {
   exec $(ls ${=PATH//:/ } 2>/dev/null | sort -u | fzf)
 }
 
+update-repo() {
+  sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/$1.list" \
+    -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+}
