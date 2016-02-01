@@ -5,10 +5,23 @@ ZSH_THEME=""
 DISABLE_AUTO_TITLE="true"
 export UPDATE_ZSH_DAYS=7
 
-plugins=(history-substring-search vi-mode autojump \
-  cabal command-not-found docker gem git-extras go httpie pass pep8 pip python \
-  vagrant web-search taskwarrior zsh-completions \
-  )
+plugins=(
+  autojump \
+  command-not-found \
+  docker \
+  git-extras \
+  go \
+  history-substring-search \
+  httpie \
+  pass \
+  pep8 \
+  pip \
+  python \
+  taskwarrior \
+  vagrant \
+  web-search \
+  zsh-completions \
+)
 
 [ -e "${ZSH}" ] && source "${ZSH}/oh-my-zsh.sh"
 
