@@ -8,8 +8,17 @@ else
   prompt_host="%{$bg[green]$fg[white]%} $(hostname -s) %{$reset_color%} "
 fi
 
+# if mode indicator wasn't setup by theme, define default
+if [[ "$MODE_INDICATOR" == "" ]]; then
+  MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
+fi
+
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+}
+
 PROMPT='${prompt_host}%{$fg[$NCOLOR]%}%3c%{$reset_color%}%{$fg[red]%}%(1j. %j.)%{$reset_color%} '
-RPROMPT='%(?..[%{$fg[red]%}%?%{$reset_color%}])%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
+RPROMPT='%(?..[%{$fg[red]%}%?%{$reset_color%}])%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%} $(vi_mode_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""

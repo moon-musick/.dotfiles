@@ -55,6 +55,7 @@ bindkey -a "^S" history-incremental-search-forward
 [ -f "${HOME}/.zsh/functions" ] && . "${HOME}/.zsh/functions"
 [ -f "${HOME}/.zsh/prompt" ]    && . "${HOME}/.zsh/prompt"
 [ -f "${HOME}/.zsh/addons" ]    && . "${HOME}/.zsh/addons"
+[ -f "${HOME}/.zsh/vi-mode" ]   && . "${HOME}/.zsh/vi-mode"
 
 # source host-specific config if present
 [ -f "${HOME}/.zsh-hostconfig" ] && . "${HOME}/.zsh-hostconfig"
