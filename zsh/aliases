@@ -41,6 +41,7 @@ alias rs='BROWSER=fx rainbowstream'
 # http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
 
+# git
 alias gp='git push'
 alias gl='git pull'
 alias gd='git diff'
@@ -62,13 +63,20 @@ alias gh='git hist'
 alias grs='git remote show origin'
 alias ghh='git hist | head'
 
+# vim
 alias v='vim'
+alias vpi='vim -u ~/.vim/custom/plug.vim +PlugInstall +qall'
+alias vpu='vim -u ~/.vim/custom/plug.vim +PlugUpgrade +qall'
+alias vpc='vim -u ~/.vim/custom/plug.vim +PlugClean   +qall'
+alias vps='vim -u ~/.vim/custom/plug.vim +PlugStatus'
 
+# subversion
 alias svl="svn log | less"
 alias svlast="svn log --limit 1"
 alias svll="svn log --limit 10"
 alias svci="svn commit -m"
 
+# ansible
 alias ap='ansible-playbook'
 alias apk='ansible-playbook --ask-sudo-pass'
 alias apvk='ansible-playbook --ask-vault-pass --ask-sudo-pass'
@@ -78,8 +86,22 @@ alias aplh='ansible-playbook --list-hosts'
 alias av='ansible-vault'
 alias avf='ansible-vault --vault-password-file ~/.vault.txt'
 
-alias cal="gcalcli"
-alias cala="gcalcli agenda"
+# gcalcli
+alias calag="gcalcli agenda"
 alias calw="gcalcli calw"
 alias calm="gcalcli calm"
-alias cald="gcalcli add"
+alias caladd="gcalcli add"
+
+# hostess
+alias hostess="sudo env \"PATH=$PATH\" hostess"
+
+# vagrant
+alias vs='vagrant status'
+alias vu='vagrant up'
+alias vh='vagrant halt'
+alias vd='vagrant destroy'
+alias vp='vagrant provision'
+alias vssh='vagrant ssh'
+
+# skrypt firmowy
+alias change="${HOME}/Dropbox/praca/tsi/env/change"
