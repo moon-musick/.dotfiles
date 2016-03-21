@@ -1,43 +1,50 @@
-#!/usr/bin/env bash
+# sensible bash defaults ######################################################
+[ -e "${HOME}/.bash/bash-sensible/sensible.bash" ] && \
+  source "${HOME}/.bash/bash-sensible/sensible.bash"
 
-# Path to the bash it configuration
-export BASH_IT=$HOME/.bash_it
+# fzf #########################################################################
+[ -e "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
 
-# Lock and Load a custom theme file
-# location /.bash_it/themes/
-export BASH_IT_THEME='minimal'
+# aliases #####################################################################
+[ -e "${HOME}/.zsh/aliases" ] && source "${HOME}/.zsh/aliases"
 
-# Don't check mail when opening terminal.
-unset MAILCHECK
+alias ls='ls --color'
+alias l='ls -ah'
+alias ll='ls -lah'
+alias lld='ls -lahd'
+alias reload='source ~/.bashrc'
+alias bashrc='vim ~/.bashrc'
+alias np='ncmpcpp'
+alias am='alsamixer'
 
-# Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
+# functions
+[ -e "${HOME}/.zsh/functions" ] && source "${HOME}/.zsh/functions"
 
-# Set vcprompt executable path for scm advance info in prompt (demula theme)
-# https://github.com/xvzf/vcprompt
-#export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
+# prompt ######################################################################
+[ -e "${HOME}/.bash/git-completion.bash" ] && \
+  source "${HOME}/.bash/git-completion.bash"
 
-# Load Bash It
-[ -e "$BASH_IT/bash_it.sh" ] && source "$BASH_IT/bash_it.sh"
+PS1='${debian_chroot:+($debian_chroot)}\u@\[\033[01;31m\]\h\[\033[00m\]:$(tput sgr0)\w$(__git_ps1 " (%s)")$ '
 
-# custom history-related stuff ################################################
+# autojump ####################################################################
+[ -e /usr/share/autojump/autojump.bash ] && \
+  source /usr/share/autojump/autojump.bash
 
-# do not log both duplicate commands and commands starting with space
-HISTCONTROL=ignoreboth
+# lscolors ####################################################################
+[ -e "${HOME}/.colors" ] && source "${HOME}/.colors"
 
-HISTSIZE=1000000
-HISTFILESIZE=1000000
-# list EXACT commands to be ignored
-HISTIGNORE="pwd:ls:ls -ll:ls -lah:ll:l:history:h:exit:cd:cd :clear:c:reload"
-# add timestamps
-HISTTIMEFORMAT=%F" "%T" "
+# history settings ############################################################
+[ -e "${HOME}/.bash/history.bash" ] && source "${HOME}/.bash/history.bash"
 
-# append commands to history immediately
-# http://askubuntu.com/questions/67283/is-it-possible-to-make-writing-to-bash-history-immediate
-shopt -s histappend
-shopt -s cmdhist
-PROMPT_COMMAND="$PROMPT_COMMAND; history -a; history -c; history -r"
+# go tools ####################################################################
+[ -d /usr/local/go/bin ] && export PATH="${PATH}:/usr/local/go/bin"
+if [ -d "${HOME}/go/bin" ]; then
+  export PATH="${HOME}/go/bin:$PATH"
+  export GOPATH="${HOME}/go"
+fi
 
-# fzf configuration
-# https://github.com/junegunn/fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# use binary jo and not the autojump function
+declare -f jo &>/dev/null && unset -f jo
+
+export EDITOR=vim
+set -o vi
