@@ -24,6 +24,9 @@ alias am='alsamixer'
 [ -e "${HOME}/.bash/git-completion.bash" ] && \
   source "${HOME}/.bash/git-completion.bash"
 
+[ -e "${HOME}/.bash/git-prompt.sh" ] && \
+  source "${HOME}/.bash/git-prompt.sh"
+
 PS1='${debian_chroot:+($debian_chroot)}\u@\[\033[01;31m\]\h\[\033[00m\]:$(tput sgr0)\w$(__git_ps1 " (%s)")$ '
 
 # autojump ####################################################################
