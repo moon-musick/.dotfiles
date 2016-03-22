@@ -1,66 +1,68 @@
-set bind-tty-special-chars off
 set show-mode-in-prompt on
 set show-all-if-ambiguous on
+set completion-ignore-case on
+set show-all-if-unmodified on
 set editing-mode vi
 set keymap vi
-set convert-meta on
+
 $if mode=vi
   set keymap vi-command
   "gg":       beginning-of-history
   "G":        end-of-history
+
   set keymap vi-insert
   "\t":       menu-complete
   "\C-a":     beginning-of-line
   "\C-e":     end-of-line
   "\C-f":     forward-char
   "\C-b":     backward-char
-  "\M-f":     forward-word
-  "\M-b":     backward-word
+  "\ef":      forward-word
+  "\eb":      backward-word
   "\C-l":     clear-screen
   # "\C-d":     delete-char
   Rubout:     backward-delete-char
   "\C-t":     transpose-chars
-  "\M-t":     transpose-words
-  "\M-u":     upcase-word
-  "\M-l":     downcase-word
-  "\M-c":     capitalize-word
+  "\et":      transpose-words
+  "\eu":      upcase-word
+  "\el":      downcase-word
+  "\ec":      capitalize-word
   "\C-k":     kill-line
   "\C-x\d":   backward-kill-line
   "\C-u":     unix-line-discard
-  "\M-d":     kill-word
-  "\M-\d":    backward-kill-word
+  "\ed":      kill-word
+  # "\e\d":     backward-kill-word
   "\C-w":     unix-word-rubout
   "\C-y":     yank
-  "\M-y":     yank-pop
+  "\ey":      yank-pop
   "\C-p":     previous-history
   "\C-n":     next-history
-  "\M-<":     beginning-of-history
-  "\M->":     end-of-history
-  "\M-p":     non-incremental-reverse-search-history
-  "\M-n":     non-incremental-forward-search-history
-  "\M-\C-y":  yank-nth-arg
-  "\M-.":     yank-last-arg
-  "\M-?":     possible-completions
-  "\M-*":     insert-completions
+  # "\e<":      beginning-of-history
+  # "\e>":      end-of-history
+  "\ep":      non-incremental-reverse-search-history
+  "\en":      non-incremental-forward-search-history
+  "\e\C-y":   yank-nth-arg
+  "\e.":      yank-last-arg
+  "\e?":      possible-completions
+  "\e*":      insert-completions
   "\C-g":     abort
-  "\M-r":     revert-line
+  "\er":      revert-line
   "\C-]":     character-search
-  "\M-\C-]":  character-search-backward
+  "\e\C-]":   character-search-backward
   "\C-@":     set-mark
-  "\M-SPACE": set-mark
+  "\eSPACE":  set-mark
   "\C-x\C-x": exchange-point-and-mark
-  "\M-#":     insert-comment
-  "\M-0":     digit-argument
-  "\M-1":     digit-argument
-  "\M-2":     digit-argument
-  "\M-3":     digit-argument
-  "\M-4":     digit-argument
-  "\M-5":     digit-argument
-  "\M-6":     digit-argument
-  "\M-7":     digit-argument
-  "\M-8":     digit-argument
-  "\M-9":     digit-argument
-  "\M--":     digit-argument
+  "\e#":      insert-comment
+  "\e0":      digit-argument
+  "\e1":      digit-argument
+  "\e2":      digit-argument
+  "\e3":      digit-argument
+  "\e4":      digit-argument
+  "\e5":      digit-argument
+  "\e6":      digit-argument
+  "\e7":      digit-argument
+  "\e8":      digit-argument
+  "\e9":      digit-argument
+  "\e-":      digit-argument
   # "(":        "\C-v()\C-b"
   # "{":        "\C-v{}\C-b"
   # "[":        "\C-v[]\C-b"
