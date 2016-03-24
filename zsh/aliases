@@ -1,5 +1,15 @@
 # vim: ft=zsh
 
+# basic
+alias ls='ls --color=tty'
+alias l='ls -ah'
+alias la='ls -lAh'
+alias ll='ls -lah'
+alias lld='ls -lahd'
+
+alias np='ncmpcpp'
+alias am='alsamixer'
+
 alias ack='ack-grep'
 alias aptitude="LANGUAGE=en_US.UTF-8 aptitude"
 alias apt-cache="LC_ALL=C apt-cache"
@@ -32,6 +42,9 @@ alias hgrep='history | grep -i'
 alias htail='history | tail -n 20'
 alias df='df -h'
 alias duh='du -hs'
+
+alias reload='source ~/.zshrc'
+alias zshrc='vim ~/.zshrc'
 
 alias suspend='sudo pm-suspend'
 
@@ -68,6 +81,7 @@ alias ghh='git hist | head'
 
 # vim
 alias v='vim'
+alias nv='nvim'
 alias vpi='vim -u ~/.vim/custom/plug.vim +PlugInstall +qall'
 alias vpu='vim -u ~/.vim/custom/plug.vim +PlugUpgrade +qall'
 alias vpc='vim -u ~/.vim/custom/plug.vim +PlugClean   +qall'

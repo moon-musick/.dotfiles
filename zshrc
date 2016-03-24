@@ -78,3 +78,6 @@ export FZF_DEFAULT_OPTS='-x --color=16'
 autoload zmv
 autoload zcalc
 autoload -U compinit && compinit
+
+# unset 'jo' (use the binary, not the autojump function)
+declare -f jo &>/dev/null && unset -f jo

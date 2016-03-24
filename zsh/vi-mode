@@ -1,5 +1,5 @@
 # vim: ft=zsh ts=2:sts=2:sw=2:et
-# Based largely on 'vi-mode' oh-my-zsh plugin.
+# Based partly on 'vi-mode' oh-my-zsh plugin.
 
 # Updates editor information when the keymap changes.
 function zle-keymap-select() {
@@ -14,13 +14,59 @@ bindkey -v
 
 # allow v to edit the command line (standard behaviour)
 autoload -Uz edit-command-line
-bindkey -M vicmd 'v' edit-command-line
+bindkey -M vicmd 'v'   edit-command-line
+
+bindkey -M vicmd "gg"  beginning-of-history
+bindkey -M vicmd "G"   end-of-history
 
 # allow ctrl-p, ctrl-n for navigate history (standard behaviour)
-bindkey '^P' up-history
-bindkey '^N' down-history
+bindkey -M viins '^P'  up-history
+bindkey -M viins '^N'  down-history
 
 # allow ctrl-h, ctrl-w, ctrl-? for char and word deletion (standard behaviour)
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
+bindkey -M viins '^?'  backward-delete-char
+bindkey -M viins '^h'  backward-delete-char
+bindkey -M viins '^w'  backward-kill-word
+
+bindkey -M viins "^a"  beginning-of-line
+bindkey -M viins "^e"  end-of-line
+bindkey -M viins "^f"  forward-char
+bindkey -M viins "^b"  backward-char
+bindkey -M viins "^[f" forward-word
+bindkey -M viins "^[b" backward-word
+# bindkey -M viins "^t" transpose-chars # already used binding (fzf)
+bindkey -M viins "^[t" transpose-words
+bindkey -M viins "^[u" up-case-word
+bindkey -M viins "^[l" down-case-word
+bindkey -M viins "^[c" capitalize-word
+bindkey -M viins "^k"  kill-line
+# bindkey -M viins "^x[[3~" kill-line
+
+# bindkey -M viins "^[#" insert-comment # no such widget
+# bindkey -M viins "^[." yank-nth-char # no such widget
+bindkey -M viins "^[." insert-last-word
+bindkey -M viins "^[-" neg-argument
+bindkey -M viins "^[0" digit-argument
+bindkey -M viins "^[1" digit-argument
+bindkey -M viins "^[2" digit-argument
+bindkey -M viins "^[3" digit-argument
+bindkey -M viins "^[4" digit-argument
+bindkey -M viins "^[5" digit-argument
+bindkey -M viins "^[6" digit-argument
+bindkey -M viins "^[7" digit-argument
+bindkey -M viins "^[8" digit-argument
+bindkey -M viins "^[9" digit-argument
+
+# move to last argument (possibly multiple times) with alt-. and then
+# move to earlier arguments (last-1, last-2 etc.) with alt-m
+autoload -Uz copy-earlier-word
+zle -N copy-earlier-word
+bindkey -M viins "^[m"  copy-earlier-word
+
+bindkey -M viins "^]"   vi-find-next-char
+bindkey -M viins "^[^]" vi-find-prev-char
+
+# push an unaccepted command to the stack
+# (gives an empty prompt,
+# the pushed command automatically reappears after executing next command)
+bindkey -M viins "^q" push-input

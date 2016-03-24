@@ -8,14 +8,9 @@
 # aliases #####################################################################
 [ -e "${HOME}/.zsh/aliases" ] && source "${HOME}/.zsh/aliases"
 
-alias ls='ls --color'
-alias l='ls -ah'
-alias ll='ls -lah'
-alias lld='ls -lahd'
+# bash-specific
 alias reload='source ~/.bashrc'
 alias bashrc='vim ~/.bashrc'
-alias np='ncmpcpp'
-alias am='alsamixer'
 
 # functions
 [ -e "${HOME}/.zsh/functions" ] && source "${HOME}/.zsh/functions"
