@@ -66,6 +66,14 @@ bindkey -M viins "^[m"  copy-earlier-word
 bindkey -M viins "^]"   vi-find-next-char
 bindkey -M viins "^[^]" vi-find-prev-char
 
+# alt-s inserts 'sudo ' at the beginning of line
+function insert_sudo() {
+  zle beginning-of-line; zle -U "sudo "
+}
+
+zle -N insert-sudo insert_sudo
+bindkey -M viins "^[s" insert-sudo
+
 # push an unaccepted command to the stack
 # (gives an empty prompt,
 # the pushed command automatically reappears after executing next command)
