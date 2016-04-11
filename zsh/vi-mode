@@ -1,5 +1,7 @@
 # vim: ft=zsh ts=2:sts=2:sw=2:et
 # Based partly on 'vi-mode' oh-my-zsh plugin.
+#
+bindkey -v
 
 # Updates editor information when the keymap changes.
 function zle-keymap-select() {
@@ -10,14 +12,21 @@ function zle-keymap-select() {
 zle -N zle-keymap-select
 zle -N edit-command-line
 
-bindkey -v
-
 # allow v to edit the command line (standard behaviour)
 autoload -Uz edit-command-line
 bindkey -M vicmd 'v'   edit-command-line
+bindkey -M viins '^[v' edit-command-line
 
 bindkey -M vicmd "gg"  beginning-of-history
 bindkey -M vicmd "G"   end-of-history
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+bindkey -M vicmd "^r" history-incremental-search-backward
+bindkey -M vicmd "^s" history-incremental-search-forward
+
+bindkey -M viins "^r" history-incremental-search-backward
+bindkey -M viins "^s" history-incremental-search-forward
 
 # allow ctrl-p, ctrl-n for navigate history (standard behaviour)
 bindkey -M viins '^P'  up-history
@@ -34,11 +43,11 @@ bindkey -M viins "^f"  forward-char
 bindkey -M viins "^b"  backward-char
 bindkey -M viins "^[f" forward-word
 bindkey -M viins "^[b" backward-word
-# bindkey -M viins "^t" transpose-chars # already used binding (fzf)
+# bindkey -M viins "^t" transpose-chars # bound to fzf-file-widget
 bindkey -M viins "^[t" transpose-words
 bindkey -M viins "^[u" up-case-word
 bindkey -M viins "^[l" down-case-word
-bindkey -M viins "^[c" capitalize-word
+# bindkey -M viins "^[c" capitalize-word # bound to fzf-cd-widget
 bindkey -M viins "^k"  kill-line
 # bindkey -M viins "^x[[3~" kill-line
 
@@ -63,8 +72,8 @@ autoload -Uz copy-earlier-word
 zle -N copy-earlier-word
 bindkey -M viins "^[m"  copy-earlier-word
 
-bindkey -M viins "^]"   vi-find-next-char
-bindkey -M viins "^[^]" vi-find-prev-char
+bindkey -M viins "^]"   vi-find-next-char #     ctrl+]
+bindkey -M viins "^[^]" vi-find-prev-char # alt+ctrl+]
 
 # alt-s inserts 'sudo ' at the beginning of line
 function insert_sudo() {

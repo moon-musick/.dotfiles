@@ -37,18 +37,6 @@ setopt EXTENDED_HISTORY
 export HISTSIZE=2000000
 export SAVEHIST=2000000
 
-# bindings ####################################################################
-
-# vi mode
-bindkey -v
-
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-bindkey -v "^R" history-incremental-search-backward
-bindkey -a "^R" history-incremental-search-backward
-bindkey -v "^S" history-incremental-search-forward
-bindkey -a "^S" history-incremental-search-forward
-
 # source additional config files ##############################################
 
 [ -f "${HOME}/.zsh/aliases" ]   && . "${HOME}/.zsh/aliases"
