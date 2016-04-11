@@ -9,6 +9,7 @@ alias lld='ls -lahd'
 
 alias np='ncmpcpp'
 alias am='alsamixer'
+alias nb='newsbeuter'
 
 alias ack='ack-grep'
 alias aptitude="LANGUAGE=en_US.UTF-8 aptitude"
