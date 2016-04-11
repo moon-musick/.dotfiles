@@ -69,3 +69,8 @@ autoload -U compinit && compinit
 
 # unset 'jo' (use the binary, not the autojump function)
 declare -f jo &>/dev/null && unset -f jo
+
+# misc settings ###############################################################
+
+# use '#' in interactive shell
+setopt interactivecomments
