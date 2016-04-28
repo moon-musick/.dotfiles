@@ -41,6 +41,9 @@ if [ -d "${HOME}/go/bin" ]; then
   export GOPATH="${HOME}/go"
 fi
 
+# fzf #########################################################################
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # use binary jo and not the autojump function
 declare -f jo &>/dev/null && unset -f jo
 
