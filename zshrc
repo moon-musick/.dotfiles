@@ -37,6 +37,10 @@ setopt EXTENDED_HISTORY
 export HISTSIZE=2000000
 export SAVEHIST=2000000
 
+# path ########################################################################
+
+export PATH=/home/lucas/.local/bin:/home/lucas/.cargo/bin:/home/lucas/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:
+
 # source additional config files ##############################################
 
 [ -f "${HOME}/.zsh/aliases" ]   && . "${HOME}/.zsh/aliases"
@@ -52,10 +56,6 @@ export SAVEHIST=2000000
 
 export EDITOR='vim'
 export TERM='screen-256color'
-
-# path ########################################################################
-
-export PATH=$PATH:/home/lucas/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/lucas/.local/bin:
 
 # fzf https://github.com/junegunn/fzf
 export FZF_TMUX=0

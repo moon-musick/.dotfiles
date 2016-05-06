@@ -31,3 +31,7 @@ fi
 # https://github.com/zsh-users/zsh-syntax-highlighting
 [ -e "${HOME}/.zsh/zsh-syntax-highlighting" ] \
   && source "${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# ansible - devel version from git
+[ -e "${HOME}/bin/ansible/hacking/env-setup" ] \
+  && source "${HOME}/bin/ansible/hacking/env-setup" &> /dev/null
